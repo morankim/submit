@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{pseudocode}
+\usepackage{url}
+\usepackage[backref, colorlinks=true, citecolor=red, urlcolor=blue, pdfauthor={Jyh-Ming Lien}]{hyperref}
+
+
+\newcommand{\handout}[5]{
+  \noindent
+  \begin{center}
+  \framebox{
+    \vbox{
+      \hbox to 5.78in { {\bf } \hfill #2 }
+      \vspace{4mm}
+      \hbox to 5.78in { {\Large \hfill #5  \hfill} }
+      \vspace{2mm}
+      \hbox to 5.78in { {\em #3 \hfill #4} }
+    }
+  }
+  \end{center}
+  \vspace*{4mm}
+}
+
+\newcommand{\lecture}[4]{\handout{#1}{#2}{#3}{}{Report for #1}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+
+% 1-inch margins, from fullpage.sty by H.Partl, Version 2, Dec. 15, 1988.
+\topmargin 0pt
+\advance \topmargin by -\headheight
+\advance \topmargin by -\headsep
+\textheight 8.9in
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+\textwidth 6.5in
+
+\parindent 0in
+\parskip 1.5ex
+%\renewcommand{\baselinestretch}{1.25}
+
+\begin{document}
+
+\lecture{Advance Algorithm Programming Assignment 1 }{Fall 2015}{Your name}{Moran Kim}
+
+
+\section{Implementation Details}
+To implement Delaunay triangulation in 3-dimension, I used 'QHull()' to compute covex hull of the vertices in 4-dimension.\\
+Given set of vertices $V=\{(v_x,v_y,v_z)\in\mathbb{R}^3|\hspace{0.15cm} for\hspace{0.15cm} v_x,v_y,v_z\in\mathbb{R}\}$, we lift up the points v$\in V$ by adding additional component $V_m=(v_x)^2+(v_y)^2+(v_z)^2$. Let us denote $V4={(v_x,v_y,v_z,v_m)\in\mathbb{R}^4}$. Then we can construct a convex hull of V4 which is a composition of tetrahedrons. After computing the convex hull of V4, we select the vertices of the tetrahedron whose facing direction is downside. After storing the information of that selected vertices $v_{selected}\in V4$, we draw tetrahedron of $v_{selected}$ with the part of Qhull() which is Delaunay().
+
+
+\section{Example Output}
+
+\section{Known bugs/limitations}
+
+\bibliographystyle{plain}
+\bibliography{report}
+
+\end{document}
+
+

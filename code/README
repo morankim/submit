@@ -1,0 +1,54 @@
+===============================================================================
+* What to do
+
+Step 1: clone this project via the following command
+
+    git clone https://github.com/jmlien/cshape.git
+
+Step 2: Read your assigment document. Go to folder cshape\assignment and type make
+or use your faovrite latex editor to compile shape-assignment.tex; It should produce
+a pdf file. Read the pdf file carefully.
+
+Step 3: Compile the code in cshape\code; on windows, visual studio solution file
+is provided. The executable will be created in cshape\bin; for unix-like platforms,
+please use the provided makefile. See "To compile" below.
+
+Step 4: Finish your assignment. This readme file and shape-assignment.pdf (that you
+created in Step 1) should help you get started.
+
+===============================================================================
+* To compile:
+
+Just type make
+
+If you want openGL display and are using linux, 
+make sure that freeglut is installed
+http://freeglut.sourceforge.net/
+
+If you don't care about 3-d rendering,
+change "OPENGL_ON := 1" to "OPENGL_ON := 0" in the Makefile
+
+===============================================================================
+* To run:
+
+Type "shape" to see all the options
+
+A typical run will be something like this:
+
+shape i.cube             # this creates the convex hull of the shape
+shape -delaunay i.cube   # you will implement this
+shape -crust    i.cube   # you will implement this
+shape -alpha  3 i.cube   # you will implement this
+
+There are several input files in data/ subdirectory. 
+
+===============================================================================
+* before you start coding:
+
+read shape.h/c and macros.h
+read main.c, in particular the part that uses qhull to compute the convex hull
+
+===============================================================================
+
+Let me know if there are problems.
+jmlien@cs.gmu.edu
