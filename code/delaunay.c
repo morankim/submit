@@ -38,8 +38,7 @@ void	Delaunay(void)
 	vertexT **vertexp = NULL;
 	facetT *neighbor, **neighborp;
 	int vid = 0;
-	tTetra tetra;
-
+	
 	//count number of points
 	ptr_v = vertices;
 	do {
@@ -81,11 +80,10 @@ void	Delaunay(void)
 	//loop through all faces
 	FORALLfacets
 	{
-	
 		if (facet->normal[3] < 0)
 		{
 
-			tetra = MakeNullTetra(); //make a face in 4D
+			tTetra tetra = MakeNullTetra(); //make a face in 4D
 
 			//get vertices of facet
 			//loop through each vertex
@@ -96,12 +94,26 @@ void	Delaunay(void)
 				//get the id of the vertex
 				tetra->vertex[vid++] = all_v[qh_pointid(vertex->point)];
 			}
-
-			FOREACHneighbor_(facet)
+            //draw edges
+            //(v[0],v[1]),(v[0],v[2]),(v[0],v[3])
+            //(v[1],v[2])(v[1],v[3])
+            //(v[2],v[3]) 
+            for (int i = 0; i < 4; i++)
+            	for (int j = i + 1; j < 4; j++)
+            	{ 
+					tEdge edge = MakeNullEdge();
+					edge->endpts[0] = tetra->vertex[i];
+					edge->endpts[1] = tetra->vertex[j];
+            	}
+       
+			
+            
+            FOREACHneighbor_(facet)
 			{
 				if (neighbor->normal[3]>0)
 				{
 					tVertex vertices[4];
+
 					vid = 0;
 					FOREACHvertex_(neighbor->vertices)
 					{
@@ -110,8 +122,8 @@ void	Delaunay(void)
 					}
 
 					tFace face = MakeNullFace();
-
-					int k=0;
+					
+					int k = 0;
 					for (int i = 0; i < 4; i++)
 						for (int j = 0; j < 4; j++)
 							if (tetra->vertex[i] == vertices[j])
@@ -121,6 +133,7 @@ void	Delaunay(void)
 			
 				}
 			}//FOREACHneighbor_
+
 		}
 	}
 

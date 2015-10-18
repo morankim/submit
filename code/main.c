@@ -227,7 +227,7 @@ int main( int argc, char *argv[] )
    	  return 1;
    }
    
-   ReadVertices("vertex.txt");
+   ReadVertices(filename);
    
    if (b_delaunay)
    {
