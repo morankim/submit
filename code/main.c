@@ -109,10 +109,10 @@ void QHull()
     qh_init_B (pt, vsize, 3, false);
     qh_qhull();
     qh_check_output();
-
+	
     //loop through all faces
     FORALLfacets 
-	{    
+	{ 
         face = MakeNullFace(); //make a face
 
         //get vertices of facet
@@ -235,7 +235,7 @@ int main( int argc, char *argv[] )
    }
    else if(b_alphashape)
    {
-   	   AlphaShape(alpha); //compute alpha shape with value alpha
+   	   AlphaShape(30); //compute alpha shape with value alpha
    }
    else if(b_crust)
    {

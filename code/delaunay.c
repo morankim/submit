@@ -76,7 +76,6 @@ void	Delaunay(void)
 	qh_qhull();
 	qh_check_output();
 
-
 	//loop through all faces
 	FORALLfacets
 	{
@@ -110,11 +109,12 @@ void	Delaunay(void)
             
             FOREACHneighbor_(facet)
 			{
-				if (neighbor->normal[3]>0)
+				//if (neighbor->normal[3]>0)
 				{
 					tVertex vertices[4];
 
 					vid = 0;
+
 					FOREACHvertex_(neighbor->vertices)
 					{
 						//get vertex
